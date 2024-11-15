@@ -15,4 +15,24 @@ describe('Time to words', () => {
     const timeInWords = convertTimeToWords('2:45');
     expect(timeInWords).toBe('quarter to three');
   });
+
+  it('Handles times before 15 mins - 2:11', () => {
+    const timeInWords = convertTimeToWords('2:11');
+    expect(timeInWords).toBe('eleven past two');
+  });
+
+  it('Handles times after 15 mins - 2:16', () => {
+    const timeInWords = convertTimeToWords('2:16');
+    expect(timeInWords).toBe('sixteen past two');
+  });
+
+  it('Handles times after 30 mins - 2:50', () => {
+    const timeInWords = convertTimeToWords('2:50');
+    expect(timeInWords).toBe('ten to three');
+  });
+
+  it('Handles times after 30 mins - 2:37', () => {
+    const timeInWords = convertTimeToWords('2:37');
+    expect(timeInWords).toBe('twenty-three to three');
+  });
 });
