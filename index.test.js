@@ -35,4 +35,14 @@ describe('Time to words', () => {
     const timeInWords = convertTimeToWords('2:37');
     expect(timeInWords).toBe('twenty-three to three');
   });
+
+  it('Handles hour', () => {
+    const timeInWords = convertTimeToWords('7:00');
+    expect(timeInWords).toBe(`seven o'clock`);
+  });
+
+  it('Handles hour greater than 12', () => {
+    const timeInWords = convertTimeToWords('15:00');
+    expect(timeInWords).toBe(`three o'clock`);
+  });
 });

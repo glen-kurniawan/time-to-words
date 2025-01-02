@@ -13,16 +13,17 @@ function convertTimeToWords(time) {
   if (intMinutes === 0) {
     if (intHour === 0) return 'midnight';
     if (intHour === 12) return 'midday';
-    return `${numberMap[intHour]} o'clock`;
+    const int12Hour = intHour > 12 ? intHour - 12 : intHour;
+    return `${numberMap[int12Hour]} o'clock`;
   }
 
   if (intMinutes === 15) return `quarter past ${numberMap[intHour]}`;
   if (intMinutes === 30) return `half past ${numberMap[intHour]}`;
   if (intMinutes === 45) return `quarter to ${numberMap[intHour+1]}`;
   
-  if (intMinutes < 15 || (intMinutes > 15 && intMinutes < 30)) return `${numberMap[intMinutes]} past ${numberMap[intHour]}`;
+  if (intMinutes < 15 || intMinutes < 30) return `${numberMap[intMinutes]} past ${numberMap[intHour]}`;
 
-  if ((intMinutes > 30 && intMinutes < 45) || (intMinutes > 45 && intMinutes <= 59)) return `${numberMap[60 - intMinutes]} to ${numberMap[intHour+1]}`;
+  if (intMinutes > 30 || intMinutes <= 59) return `${numberMap[60 - intMinutes]} to ${numberMap[intHour+1]}`;
 }
 
 module.exports = { convertTimeToWords };
